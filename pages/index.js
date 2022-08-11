@@ -7,12 +7,12 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import SkeletonComponent from "../components/skeleton.component";
 import CardComponent from "../components/card.component";
 
-export async function getTabacos() {
+export async function getTobacco() {
     return (await axios.get("http://localhost:1337/api/tabaccos?populate=*")).data;
 }
 
 export default function Home() {
-    const {data, isError, isLoading} = useQuery('tabacos', getTabacos);
+    const {data, isError, isLoading} = useQuery('tobacco', getTobacco);
     const amountOfSkeletons = [1,2,3,4,5,6];
 
     // https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
@@ -40,6 +40,7 @@ export default function Home() {
                               Array.from({length: amountOfSkeletons.length})
                                   .map((_, index) => (
                                       // TODO(BUG): Inline styling works, but external styling dont
+                                      // eslint-disable-next-line react/jsx-key
                                       <Col style={{display: 'flex', justifyContent: 'center'}}>
                                           <SkeletonComponent key={index} />
                                       </Col>
@@ -49,13 +50,13 @@ export default function Home() {
                           </Row>
                       </div>
                       :
-                        data.data.map(tabaco => (
-                            <CardComponent key={tabaco.attributes.name}
-                                           type={tabaco.attributes.type}
-                                           name={tabaco.attributes.name}
-                                           company={tabaco.attributes.company}
-                                           price={tabaco.attributes.price}
-                                           image={'http://localhost:1337' + tabaco.attributes.image.data.attributes.url}
+                        data.data.map(tobacco => (
+                            <CardComponent key={tobacco.attributes.name}
+                                           type={tobacco.attributes.type}
+                                           name={tobacco.attributes.name}
+                                           company={tobacco.attributes.company}
+                                           price={tobacco.attributes.price}
+                                           image={'http://localhost:1337' + tobacco.attributes.image.data.attributes.url}
                             />
                         ))
                     }
@@ -63,10 +64,11 @@ export default function Home() {
           </Container>
       </main>
 
+      {/* TODO: Readout the strapi categories instead of incode */}
       <div className={styles.categories}>
           <div className={styles.tag} id={styles.current}>Alles Anzeigen</div>
           <div className={styles.tag}>Darkblend</div>
-          <div className={styles.tag}>Virgina</div>
+          <div className={styles.tag}>Virginia</div>
           <div className={styles.tag}>Dampfpaste</div>
           <div className={styles.tag}>Tabakersatz</div>
       </div>
