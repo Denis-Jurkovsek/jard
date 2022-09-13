@@ -8,11 +8,11 @@ import SkeletonComponent from "../components/skeleton.component";
 import CardComponent from "../components/card.component";
 
 export async function getTobacco() {
-    return (await axios.get("https://jard.panel.jade-hookah.shop/tobaccos?populate=*")).data;
+    return (await axios.get("https://jard.panel.jade-hookah.shop/tobaccos")).data;
 }
 
 export default function Home() {
-    const {data, isError, isLoading} = useQuery('tabaccos', getTobacco);
+    const {data, isError, isLoading} = useQuery('tobaccos', getTobacco);
     const amountOfSkeletons = [1,2,3,4,5,6];
 
     // https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
