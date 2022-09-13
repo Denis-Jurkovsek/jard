@@ -12,7 +12,7 @@ export async function getTobacco() {
 }
 
 export default function Home() {
-    const {data, isError, isLoading} = useQuery('tobacco', getTobacco);
+    const {data, isError, isLoading} = useQuery('tabaccos', getTobacco);
     const amountOfSkeletons = [1,2,3,4,5,6];
 
     // https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
