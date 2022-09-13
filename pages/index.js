@@ -8,7 +8,7 @@ import SkeletonComponent from "../components/skeleton.component";
 import CardComponent from "../components/card.component";
 
 export async function getTobacco() {
-    return (await axios.get("http://panel.jard.jade-hookah.shop/api/tabaccos?populate=*")).data;
+    return (await axios.get("https://jard.panel.jade-hookah.shop/tobaccos?populate=*")).data;
 }
 
 export default function Home() {
@@ -56,7 +56,7 @@ export default function Home() {
                                            name={tobacco.attributes.name}
                                            company={tobacco.attributes.company}
                                            price={tobacco.attributes.price}
-                                           image={'http://panel.jard.jade-hookah.shop' + tobacco.attributes.image.data.attributes.url}
+                                           image={'https://jard.panel.jade-hookah.shop/' + tobacco.attributes.image.data.attributes.url}
                             />
                         ))
                     }
